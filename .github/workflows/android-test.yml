@@ -1,0 +1,43 @@
+name: Android UI Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      testSuite:
+        description: 'Test suite to run'
+        required: false
+        default: 'connectedCheck'
+        type: string
+
+jobs:
+  test:
+    runs-on: macos-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🚀 Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🔧 Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: 🧪 Run tests on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86_64
+          profile: Nexus 5X
+          script: ./gradlew ${{ github.event.inputs.testSuite || 'connectedCheck' }}

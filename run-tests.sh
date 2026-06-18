@@ -1,17 +1,16 @@
 #!/bin/bash
 
-REPO="ioptna/android-tests"
+REPO="k0sm0xyz/android-tests"
 WORKFLOW_ID="android-test.yml"
 
-# Автоматически берём токен из текущей сессии GitHub CLI
 GITHUB_TOKEN=$(gh auth token)
 
 if [ -z "$GITHUB_TOKEN" ]; then
-    echo "❌ Не удалось получить токен. Запусти 'gh auth login' сначала."
+    echo "❌ Токен не найден. Запусти 'gh auth login'"
     exit 1
 fi
 
-echo "🔑 Токен получен, запускаем тесты..."
+echo "🔑 Запускаем тесты..."
 
 curl -L -X POST \
   -H "Accept: application/vnd.github+json" \
@@ -21,5 +20,5 @@ curl -L -X POST \
   -d '{"ref":"main"}'
 
 echo ""
-echo "✅ Тесты запущены! Смотри результат:"
-echo "   https://github.com/$REPO/actions"
+echo "✅ Тесты запущены!"
+echo "📊 Смотреть: https://github.com/$REPO/actions"

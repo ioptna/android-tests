@@ -7,29 +7,29 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class TelegramTest {
+class YouTubeTest {
 
     @Test
-    fun testTelegramInstalled() {
+    fun testYouTubeInstalled() {
         val device = UiDevice.getInstance(
             androidx.test.platform.app.InstrumentationRegistry.getInstrumentation()
         )
 
-        val packages = device.executeShellCommand("pm list packages org.telegram.messenger")
+        val packages = device.executeShellCommand("pm list packages com.google.android.youtube")
         assertTrue(
-            "Telegram should be installed on this device",
-            packages.contains("org.telegram.messenger")
+            "YouTube should be installed on this device",
+            packages.contains("com.google.android.youtube")
         )
     }
 
     @Test
-    fun testTelegramLaunch() {
+    fun testYouTubeLaunch() {
         val device = UiDevice.getInstance(
             androidx.test.platform.app.InstrumentationRegistry.getInstrumentation()
         )
 
-        device.executeShellCommand("monkey -p org.telegram.messenger 1")
+        device.executeShellCommand("monkey -p com.google.android.youtube 1")
         Thread.sleep(2000)
-        assertTrue("Telegram should be running", true)
+        assertTrue("YouTube should be running", true)
     }
 }

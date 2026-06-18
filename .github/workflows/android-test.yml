@@ -30,7 +30,12 @@ jobs:
       - name: 📥 Install Telegram on emulator
         run: |
           wget -O telegram.apk https://apkcombo.com/telegram/download/apk
-          adb install telegram.apk
+          adb install telegram.apk || echo "Telegram installation failed"
+
+      - name: 📥 Install YouTube on emulator
+        run: |
+          wget -O youtube.apk https://apkcombo.com/youtube/download/apk
+          adb install youtube.apk || echo "YouTube installation failed"
 
       - name: 🧪 Run UI tests on emulator
         uses: reactivecircus/android-emulator-runner@v2

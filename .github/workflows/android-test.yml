@@ -37,7 +37,7 @@ jobs:
           script: ./gradlew connectedCheck
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          timeout: 600
+          emulator-boot-timeout: 600
 
       - name: 📤 Upload test reports
         if: always()

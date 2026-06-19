@@ -29,12 +29,12 @@ jobs:
 
       - name: 📥 Install Telegram on emulator
         run: |
-          wget -O telegram.apk https://github.com/4ndroidev/Telegram-APK/raw/main/Telegram.apk
+          wget -O telegram.apk https://github.com/alexmercerind/Telegram/raw/master/app/release/app-release.apk || wget -O telegram.apk https://archive.org/download/telegram-apk/Telegram.apk
           adb install -d telegram.apk || echo "Telegram installation failed"
 
       - name: 📥 Install YouTube on emulator
         run: |
-          wget -O youtube.apk https://github.com/4ndroidev/YouTube-APK/raw/main/YouTube.apk
+          wget -O youtube.apk https://github.com/TeamVanced/VancedMicroG/raw/master/apk/microg.apk || wget -O youtube.apk https://apkcombo.com/download?package=com.google.android.youtube&version=latest
           adb install -d youtube.apk || echo "YouTube installation failed"
 
       - name: 🧪 Run UI tests on emulator

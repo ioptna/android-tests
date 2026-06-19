@@ -45,6 +45,9 @@ jobs:
           arch: x86_64
           profile: Nexus 5X
           script: ./gradlew connectedCheck
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          timeout: 600
 
       - name: 📤 Upload test reports
         if: always()

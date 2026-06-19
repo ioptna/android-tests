@@ -27,11 +27,6 @@ jobs:
       - name: 🔧 Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: 📥 Install YouTube on emulator
-        run: |
-          wget -O youtube.apk https://github.com/yt-dlp/yt-dlp/raw/master/yt_dlp/extractor/youtube.apk || wget -O youtube.apk https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=198654
-          adb install -d youtube.apk || echo "YouTube installation failed"
-
       - name: 🧪 Run UI tests on emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:

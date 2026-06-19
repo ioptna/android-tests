@@ -52,3 +52,17 @@ jobs:
         with:
           name: test-reports
           path: app/build/reports/
+
+      - name: 📨 Send Telegram notification
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            STATUS="✅ Тесты ПРОШЛИ успешно!"
+            EMOJI="✅"
+          else
+            STATUS="❌ Тесты УПАЛИ!"
+            EMOJI="❌"
+          fi
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+            -d text="$EMOJI $STATUS%0A📂 Репозиторий: k0sm0xyz/android-tests%0A📊 Смотреть: https://github.com/k0sm0xyz/android-tests/actions"

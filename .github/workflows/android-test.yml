@@ -38,6 +38,8 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           emulator-boot-timeout: 600
+          force-avd-creation: false
+          disk-size: 2048M
 
       - name: 📤 Upload test reports
         if: always()
